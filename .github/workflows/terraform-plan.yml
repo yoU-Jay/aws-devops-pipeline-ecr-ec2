@@ -5,9 +5,7 @@ on:
     branches:
       - dev
       - main
-    paths:
-      - '**.tf'
-      - 'modules/**'
+
 
 jobs:
   terraform-check-plan:
