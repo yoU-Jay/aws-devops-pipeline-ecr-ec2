@@ -8,7 +8,7 @@ instance_name     = "devops-ec2-instance"
 key_name          = "deployer_key"
 user_data         = file("userdata.sh")
 allowed_ssh_cidrs = ["YOUR_IP/32"]
-
+name              = "devops-ec2"
 tags = {
   Environment = "dev"
   Project     = "ECR-EC2-Deployment"
