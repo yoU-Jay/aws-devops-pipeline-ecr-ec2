@@ -10,5 +10,5 @@ data "aws_subnet_ids" "default_vpc_subnets" {
 
 # (Optional) Select first subnet ID to use
 locals {
-  first_subnet_id = data.aws_subnet_ids.default_vpc_subnets.ids[0]
+  first_subnet_id = tolist(data.aws_subnet_ids.default_vpc_subnets.ids)[0]
 }
