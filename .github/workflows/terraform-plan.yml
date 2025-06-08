@@ -84,6 +84,10 @@ jobs:
           username: ${{ vars.EC2_USER }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |
+            sudo yum update -y
+            sudo amazon-linux-extras install docker -y
+            sudo systemctl start docker
+            sudo systemctl enable docker
             docker --version
             sudo systemctl status docker
             aws ecr get-login-password --region ${{ vars.AWS_REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_REPO }}
