@@ -1,0 +1,10 @@
+# Ignore Terraform and CI/CD folders
+terraform/
+.github/
+.git/
+*.tf
+*.tfvars
+*.pub
+*.sh
+README.md
+LICENSE
