@@ -52,6 +52,9 @@ jobs:
         working-directory: terraform
         run: terraform output -json > tf_output.json
 
+      - name: Show terraform output json file contents
+        run: cat terraform/tf_output.json
+
       - name: Export Terraform outputs as environment variables
         run: |
           echo "EC2_HOST=$(jq -r '.ec2_host.value' terraform/tf_output.json)" >> $GITHUB_ENV
