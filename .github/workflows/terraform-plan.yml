@@ -48,11 +48,14 @@ jobs:
         working-directory: ./terraform
         run: terraform apply -auto-approve -var-file="dev.tfvars"
 
-      - name: Get Terraform Outputs
-        working-directory: ./terraform
+      - name: Save all Terraform outputs to JSON
+        working-directory: terraform
+        run: terraform output -json > tf_output.json
+
+      - name: Export Terraform outputs as environment variables
         run: |
-          echo "EC2_HOST=$(terraform output -raw ec2_host)" >> $GITHUB_ENV
-          echo "ECR_REPO=$(terraform output -raw ecr_repo_url)" >> $GITHUB_ENV
+          echo "EC2_HOST=$(jq -r '.ec2_host.value' terraform/tf_output.json)" >> $GITHUB_ENV
+          echo "ECR_REPO=$(jq -r '.ecr_repo_url.value' terraform/tf_output.json)" >> $GITHUB_ENV
 
       - name: Log in to Amazon ECR
         id: login-ecr
