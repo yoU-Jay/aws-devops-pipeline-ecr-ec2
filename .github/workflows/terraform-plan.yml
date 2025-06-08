@@ -57,8 +57,8 @@ jobs:
 
       - name: Parse outputs without jq
         run: |
-          EC2_HOST=$(grep -A2 '"ec2_host"' tf_output.json | grep '"value"' | sed -E 's/.*"value": "(.*)".*/\1/')
-          ECR_REPO_URL=$(grep -A2 '"ecr_repo_url"' tf_output.json | grep '"value"' | sed -E 's/.*"value": "(.*)".*/\1/')
+          EC2_HOST=$(grep -A2 '"ec2_host"' terraform/tf_output.json | grep '"value"' | sed -E 's/.*"value": "(.*)".*/\1/')
+          ECR_REPO_URL=$(grep -A2 '"ecr_repo_url"' terraform/tf_output.json | grep '"value"' | sed -E 's/.*"value": "(.*)".*/\1/')
 
           echo "EC2_HOST=$EC2_HOST" >> $GITHUB_ENV
           echo "ECR_REPO_URL=$ECR_REPO_URL" >> $GITHUB_ENV
