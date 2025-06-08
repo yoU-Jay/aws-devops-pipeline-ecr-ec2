@@ -34,7 +34,7 @@ jobs:
 
       - name: Terraform Init
         working-directory: ./terraform
-        run: terraform init --backend-config="backend.tf"
+        run: terraform init --backend-config="backend.tfvars"
 
       - name: Terraform Validate
         working-directory: ./terraform
