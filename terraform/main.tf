@@ -5,15 +5,15 @@ module "ecr" {
 }
 
 module "ec2" {
-  source        = "./module/ec2"
-  ami_id        = var.ami_id
-  instance_type = var.instance_type
-  instance_name = var.instance_name
-  subnet_id     = local.first_subnet_id
-  vpc_id        = data.aws_vpc.default.id
-  key_name      = var.key_name
-  user_data     = var.user_data
+  source            = "./module/ec2"
+  ami_id            = var.ami_id
+  instance_type     = var.instance_type
+  instance_name     = var.instance_name
+  subnet_id         = local.first_subnet_id
+  vpc_id            = data.aws_vpc.default.id
+  key_name          = var.key_name
+  user_data         = var.user_data
   allowed_ssh_cidrs = var.allowed_ssh_cidrs
-  tags          = var.tags
-  name          = var.name
+  tags              = var.tags
+  name              = var.name
 }
