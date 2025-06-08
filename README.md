@@ -4,7 +4,7 @@ End-to-end DevOps pipeline with GitHub Actions, Docker, Terraform, AWS ECR &amp;
 ## Project Overview
 This project deploys an AWS Elastic Container Registry (ECR) repository using Terraform with a modular and scalable approach. The goal is to create and manage ECR infrastructure as code efficiently.
 
----
+--- 
 
 ## Architecture Diagram
 
