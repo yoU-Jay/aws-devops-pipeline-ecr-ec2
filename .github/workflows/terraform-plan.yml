@@ -55,11 +55,11 @@ jobs:
       - name: Show terraform output json file contents
         run: cat terraform/tf_output.json
 
-      - name: Export Terraform outputs as environment variables
+      - name: Set environment variables from terraform output
         run: |
           echo "EC2_HOST=$(jq -r '.ec2_host.value' terraform/tf_output.json)" >> $GITHUB_ENV
-          echo "ECR_REPO=$(jq -r '.ecr_repo_url.value' terraform/tf_output.json)" >> $GITHUB_ENV
-
+          echo "ECR_REPO_URL=$(jq -r '.ecr_repo_url.value' terraform/tf_output.json)" >> $GITHUB_ENV
+          
       - name: Log in to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
