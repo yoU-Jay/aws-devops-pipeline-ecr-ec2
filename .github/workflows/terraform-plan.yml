@@ -55,11 +55,19 @@ jobs:
       - name: Show terraform output json file contents
         run: cat terraform/tf_output.json
 
-      - name: Set environment variables from terraform output
+      - name: Parse outputs without jq
         run: |
-          echo "EC2_HOST=$(jq -r '.ec2_host.value' terraform/tf_output.json)" >> $GITHUB_ENV
-          echo "ECR_REPO_URL=$(jq -r '.ecr_repo_url.value' terraform/tf_output.json)" >> $GITHUB_ENV
-          
+          EC2_HOST=$(grep -A2 '"ec2_host"' tf_output.json | grep '"value"' | sed -E 's/.*"value": "(.*)".*/\1/')
+          ECR_REPO_URL=$(grep -A2 '"ecr_repo_url"' tf_output.json | grep '"value"' | sed -E 's/.*"value": "(.*)".*/\1/')
+
+          echo "EC2_HOST=$EC2_HOST" >> $GITHUB_ENV
+          echo "ECR_REPO_URL=$ECR_REPO_URL" >> $GITHUB_ENV
+
+      - name: Check environment variables
+        run: |
+          echo "EC2_HOST=$EC2_HOST"
+          echo "ECR_REPO_URL=$ECR_REPO_URL"
+
       - name: Log in to Amazon ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
