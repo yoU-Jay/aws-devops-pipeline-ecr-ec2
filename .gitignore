@@ -24,3 +24,11 @@ yarn-error.log*
 
 # OS generated files
 Thumbs.db
+
+# Terraform files to ignore
+.terraform/
+*.tfstate
+*.tfstate.*
+.terraform.lock.hcl
+crash.log
+*.tfplan
