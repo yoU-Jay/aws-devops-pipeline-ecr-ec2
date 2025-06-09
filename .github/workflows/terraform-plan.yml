@@ -83,20 +83,12 @@ jobs:
           host: "34.224.1.124"
           username: ${{ vars.EC2_USER }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
-          script: |
-            sudo yum update -y
-            sudo yum install -y docker
-            echo "dcker service start"
-            sudo service docker start
-            echo "dcker status"
+          script: |  
+
+            docker --version
             sudo systemctl status docker
-            echo "dcker user mod"
-            sudo usermod -a -G docker ec2-user
-            echo "dcker ps"
+            aws ecr get-login-password --region ${{ vars.AWS_REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_REPO }}
+            sudo docker pull ${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }}
+            sudo docker stop app || true && docker rm app || true
+            sudo docker run -d -p 80:80 --name app ${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }}
             docker ps
-            # docker --version
-            # sudo systemctl status docker
-            # aws ecr get-login-password --region ${{ vars.AWS_REGION }} | docker login --username AWS --password-stdin ${{ env.ECR_REPO }}
-            # sudo docker pull ${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }}
-            # sudo docker stop app || true && docker rm app || true
-            # sudo docker run -d -p 80:80 --name app ${{ env.ECR_REPO }}:${{ env.IMAGE_TAG }}

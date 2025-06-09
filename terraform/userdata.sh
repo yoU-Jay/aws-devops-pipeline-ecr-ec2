@@ -1,7 +1,7 @@
 #!/bin/bash
-sudo dnf update -y
-sudo dnf install -y docker
-sudo systemctl start docker
+sudo yum update -y
+sudo yum install -y docker
+sudo service docker start
+sudo systemctl status docker
 sudo systemctl enable docker
-sudo usermod -aG docker ec2-user
-newgrp docker
+sudo usermod -a -G docker ec2-user 
