@@ -19,6 +19,14 @@ resource "aws_security_group" "this" {
     description = "HTTP access"
   }
 
+  ingress {
+    from_port   = 443
+    to_port     = 443
+    protocol    = "tcp"
+    cidr_blocks = ["0.0.0.0/0"]
+    description = "HTTPs access"
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
