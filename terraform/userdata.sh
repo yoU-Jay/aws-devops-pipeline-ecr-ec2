@@ -1,7 +1,7 @@
 #!/bin/bash
-sudo yum update -y
-sudo yum install -y docker
-sudo service docker start
-sudo systemctl status docker
-sudo systemctl enable docker
-sudo usermod -a -G docker ec2-user 
+yum update -y
+yum install -y docker
+service docker start
+systemctl status docker
+systemctl enable docker
+usermod -a -G docker ec2-user 
