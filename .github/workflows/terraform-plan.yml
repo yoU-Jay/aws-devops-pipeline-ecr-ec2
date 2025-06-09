@@ -86,9 +86,13 @@ jobs:
           script: |
             sudo yum update -y
             sudo yum install -y docker
+            echo "dcker service start"
             sudo service docker start
+            echo "dcker status"
             sudo systemctl status docker
+            echo "dcker user mod"
             sudo usermod -a -G docker ec2-user
+            echo "dcker ps"
             docker ps
             # docker --version
             # sudo systemctl status docker
