@@ -80,7 +80,7 @@ jobs:
       - name: SSH into EC2 and deploy container
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: "100.25.30.169"
+          host: "100.25.143.40"
           username: ${{ vars.EC2_USER }}
           key: ${{ secrets.EC2_SSH_PRIVATE_KEY }}
           script: |  
