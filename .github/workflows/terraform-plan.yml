@@ -47,7 +47,7 @@ jobs:
 
       - name: Terraform Apply
         working-directory: ./terraform
-        run: terraform apply -auto-approve -var-file="dev.tfvars"
+        run: terraform apply -auto-approve -var-file="dev.tfvars" -destroy
 
       - name: Save all Terraform outputs to JSON
         working-directory: terraform
